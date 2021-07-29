@@ -8,14 +8,12 @@ data class Recipe (
     var name: String,
     var coffeeBrand: String,
     var brewingMethod: String,
-    var coffeeAmount: Float,
+    var coffeeAmount: String,
     var coffeeMeasurement: String,
-    var waterAmount: Float,
+    var waterAmount: String,
     var waterMeasurement: String,
-    var milkType: String,
-    var sugarType: String,
-    var sugarAmount: Float,
-    var sugarMeasurement: String,
+    var milk: String,
+    var sugar: String,
     var notes: String,
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null

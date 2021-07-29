@@ -3,15 +3,13 @@ package com.tmdstudios.coffeeaficionado
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.tmdstudios.coffeeaficionado.adapters.RecyclerAdapter
-import com.tmdstudios.coffeeaficionado.viewmodels.MainActivityViewModel
+import com.tmdstudios.coffeeaficionado.viewmodels.RecipeViewModel
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: MainActivityViewModel
+    private lateinit var viewModel: RecipeViewModel
     private lateinit var rvRecipes: RecyclerView
     private lateinit var button: Button
 
@@ -19,14 +17,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        rvRecipes = findViewById(R.id.rvRecipes)
+        setupActionBarWithNavController(findNavController(R.id.fragment))
 
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        viewModel.getRecipes().observe(this, Observer { rvRecipes.adapter!!.notifyDataSetChanged() })
-
-        button = findViewById(R.id.button)
-
-        rvRecipes.adapter = RecyclerAdapter(this, viewModel.getRecipes().value!!)
-        rvRecipes.layoutManager = LinearLayoutManager(this)
+//        rvRecipes = findViewById(R.id.rvRecipes)
+//
+//        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+//        viewModel.getall().observe(this, Observer { rvRecipes.adapter!!.notifyDataSetChanged() })
+//
+//        button = findViewById(R.id.button)
+//
+//        rvRecipes.adapter = RecyclerAdapter(this, viewModel.getRecipes().value!!)
+//        rvRecipes.layoutManager = LinearLayoutManager(this)
     }
 }

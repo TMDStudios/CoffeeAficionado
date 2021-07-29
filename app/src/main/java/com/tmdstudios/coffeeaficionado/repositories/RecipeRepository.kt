@@ -1,77 +1,15 @@
 package com.tmdstudios.coffeeaficionado.repositories
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import com.tmdstudios.coffeeaficionado.adapters.RecipeDao
 import com.tmdstudios.coffeeaficionado.models.Recipe
 
 
-class RecipeRepository {
-    private var instance: RecipeRepository? = null
-    private val dataSet: ArrayList<Recipe> = ArrayList()
+class RecipeRepository(private val recipeDao: RecipeDao) {
 
-    fun getInstance(): RecipeRepository? {
-        if (instance == null) {
-            instance = RecipeRepository()
-        }
-        return instance
-    }
+    val getAllRecipes: LiveData<List<Recipe>> = recipeDao.getAllRecipes()
 
-
-    // Pretend to get data from a webservice or online source
-    fun getRecipes(): MutableLiveData<List<Recipe>> {
-        setRecipes()
-        val data: MutableLiveData<List<Recipe>> = MutableLiveData<List<Recipe>>()
-        data.value = dataSet
-        return data
-    }
-
-    private fun setRecipes() {
-        dataSet.add(
-            Recipe(
-                "Recipe 1",
-                "Starbucks",
-                "Mr. Coffee",
-                5f,
-                "Spoons",
-                .1f,
-                "Coffee Pitcher",
-                "cream",
-                "brown granulated",
-                1f,
-                "spoon",
-                "none"
-            )
-        )
-        dataSet.add(
-            Recipe(
-                "Recipe 2",
-                "PNC",
-                "Mr. Coffee",
-                5f,
-                "Spoons",
-                .1f,
-                "Coffee Pitcher",
-                "cream",
-                "brown granulated",
-                1f,
-                "spoon",
-                "bad"
-            )
-        )
-        dataSet.add(
-            Recipe(
-                "Recipe 3",
-                "Dunkin",
-                "Mr. Coffee",
-                5f,
-                "Spoons",
-                .1f,
-                "Coffee Pitcher",
-                "cream",
-                "brown granulated",
-                1f,
-                "spoon",
-                "haven't tried"
-            )
-        )
+    suspend fun addRecipe(recipe: Recipe){
+        recipeDao.addRecipe(recipe)
     }
 }

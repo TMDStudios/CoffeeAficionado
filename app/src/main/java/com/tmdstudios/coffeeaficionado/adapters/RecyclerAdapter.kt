@@ -9,16 +9,15 @@ import com.tmdstudios.coffeeaficionado.R
 import com.tmdstudios.coffeeaficionado.models.Recipe
 import kotlinx.android.synthetic.main.recipe_card.view.*
 
-class RecyclerAdapter(
-    private val context: Context,
-    private val recipes: List<Recipe>):
-    RecyclerView.Adapter<RecyclerAdapter.RecipeViewHolder>() {
+class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.RecipeViewHolder>() {
+
+    private var recipes = emptyList<Recipe>()
 
     class RecipeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         return RecipeViewHolder(
-            LayoutInflater.from(context).inflate(
+            LayoutInflater.from(parent.context).inflate(
                 R.layout.recipe_card,
                 parent,
                 false
@@ -30,11 +29,14 @@ class RecyclerAdapter(
         val recipe = recipes[position]
 
         holder.itemView.apply {
-            tvRecipeTitle.text = recipe.name
+            tvRecipeName.text = recipe.name
         }
     }
 
     override fun getItemCount() = recipes.size
 
-
+    fun setData(recipes: List<Recipe>){
+        this.recipes = recipes
+        notifyDataSetChanged()
+    }
 }
