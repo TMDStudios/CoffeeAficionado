@@ -31,4 +31,10 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun updateRecipe(recipe: Recipe){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateRecipe(recipe)
+        }
+    }
+
 }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_list_fragment_to_add_fragment"
             app:destination="@id/add_fragment" />
+        <action
+            android:id="@+id/action_list_fragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
     </fragment>
     <fragment
         android:id="@+id/add_fragment"
@@ -22,5 +25,17 @@
         <action
             android:id="@+id/action_add_fragment_to_list_fragment"
             app:destination="@id/list_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.tmdstudios.coffeeaficionado.fragments.update.UpdateFragment"
+        android:label="Update Recipe"
+        tools:layout="@layout/fragment_update" >
+        <action
+            android:id="@+id/action_updateFragment_to_list_fragment"
+            app:destination="@id/list_fragment" />
+        <argument
+            android:name="currentRecipe"
+            app:argType="com.tmdstudios.coffeeaficionado.models.Recipe" />
     </fragment>
 </navigation>

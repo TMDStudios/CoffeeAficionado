@@ -1,11 +1,12 @@
 package com.tmdstudios.coffeeaficionado.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tmdstudios.coffeeaficionado.R
+import com.tmdstudios.coffeeaficionado.fragments.list.ListFragmentDirections
 import com.tmdstudios.coffeeaficionado.models.Recipe
 import kotlinx.android.synthetic.main.recipe_card.view.*
 
@@ -30,6 +31,10 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.RecipeViewHolder>() 
 
         holder.itemView.apply {
             tvRecipeName.text = recipe.name
+            cvRecipeCard.setOnClickListener {
+                val action = ListFragmentDirections.actionListFragmentToUpdateFragment(recipe)
+                findNavController().navigate(action)
+            }
         }
     }
 
