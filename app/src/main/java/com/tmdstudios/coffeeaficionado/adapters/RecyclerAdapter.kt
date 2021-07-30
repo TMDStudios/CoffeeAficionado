@@ -31,6 +31,9 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.RecipeViewHolder>() 
 
         holder.itemView.apply {
             tvRecipeName.text = recipe.name
+            tvCoffeeBrand.text = recipe.coffeeBrand
+            tvBrewingMethod.text = recipe.brewingMethod
+            tvRecipeNotes.text = recipe.notes
             cvRecipeCard.setOnClickListener {
                 val action = ListFragmentDirections.actionListFragmentToUpdateFragment(recipe)
                 findNavController().navigate(action)

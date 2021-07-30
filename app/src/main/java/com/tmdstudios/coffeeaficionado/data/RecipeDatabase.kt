@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.tmdstudios.coffeeaficionado.adapters.RecipeDao
 import com.tmdstudios.coffeeaficionado.models.Recipe
 
-@Database(entities = [Recipe::class], version = 2, exportSchema = false)
+@Database(entities = [Recipe::class], version = 1, exportSchema = false)
 abstract class RecipeDatabase: RoomDatabase() {
 
     abstract fun recipeDao(): RecipeDao
@@ -26,7 +26,7 @@ abstract class RecipeDatabase: RoomDatabase() {
                     context,
                     RecipeDatabase::class.java,
                     "coffee_recipes"
-                ).fallbackToDestructiveMigration()
+                ).fallbackToDestructiveMigration()  // Destroys old database on version change
                     .build()
                 INSTANCE = instance
                 return instance
